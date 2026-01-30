@@ -1,0 +1,42 @@
+name: QuantumROM Tools
+
+on:
+  workflow_dispatch:
+    inputs:
+      STOCK_DEVICE_MODEL:
+        description: "Enter the STOCK_DEVICE_MODEL."
+        required: true
+        default: "SM-A225F"
+      STOCK_DEVICE_CSC:
+        description: "Enter the STOCK_DEVICE_CSC (Country Specific Code)."
+        required: true
+        default: "BKD"
+      STOCK_DEVICE_IMEI:
+        description: "Enter the STOCK_DEVICE_IMEI number."
+        required: true
+        default: "350167020473859"
+
+      TARGET_DEVICE_MODEL:
+        description: "Enter the TARGET_DEVICE_MODEL."
+        required: true
+        default: "SM-A245F"
+      TARGET_DEVICE_CSC:
+        description: "Enter the TARGET_DEVICE_CSC (Country Specific Code)."
+        required: true
+        default: "BKD"
+      TARGET_DEVICE_IMEI:
+        description: "Enter the TARGET_DEVICE_IMEI number."
+        required: true
+        default: "357181567907875"
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Free disk space
+        run: |
+          blkid odm.img
