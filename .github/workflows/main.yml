@@ -40,3 +40,6 @@ jobs:
       - name: Free disk space
         run: |
           blkid odm.img
+          cd /usr
+          ls
+          pwd
