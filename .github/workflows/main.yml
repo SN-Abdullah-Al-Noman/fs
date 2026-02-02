@@ -18,6 +18,6 @@ jobs:
           blkid odm.img
           ls
           pwd
-          sudo cp -v "./bin/erofs-utils/*" "/usr/local/bin/"
-          sudo chmod 755 "/usr/local/bin/*"
+          sudo cp -v "./bin/erofs-utils/extract.erofs" "/usr/local/bin"
+          sudo chmod 755 "/usr/local/bin/extract.erofs"
           extract.erofs
