@@ -24,3 +24,4 @@ jobs:
           cp "$(pwd)/bin/lp/lpunpack" "/usr/local/bin"
           cp "$(pwd)/bin/simg2img/simg2img" "/usr/local/bin"
           sudo chmod 755 /usr/local/bin/*
+          lpunpack
