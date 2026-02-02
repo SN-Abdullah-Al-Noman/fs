@@ -23,4 +23,4 @@ jobs:
           cp "$(pwd)/bin/ext4/make_ext4fs" "/usr/local/bin"
           cp "$(pwd)/bin/lp/lpunpack" "/usr/local/bin"
           cp "$(pwd)/bin/simg2img/simg2img" "/usr/local/bin"
-          chmod 755 "/usr/local/bin/*"
+          sudo chmod 755 "/usr/local/bin/*"
