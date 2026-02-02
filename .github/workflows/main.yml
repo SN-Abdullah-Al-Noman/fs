@@ -16,7 +16,6 @@ jobs:
       - name: Free disk space
         run: |
           blkid odm.img
-          cd /usr
           ls
           pwd
           sudo cp -v "./bin/simg2img/simg2img" "/usr/local/bin/simg2img"
