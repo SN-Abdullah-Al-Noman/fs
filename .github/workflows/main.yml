@@ -18,6 +18,9 @@ jobs:
           blkid odm.img
           ls
           pwd
-          sudo cp -v "./bin/erofs-utils/extract.erofs" "/usr/local/bin"
-          sudo chmod 755 "/usr/local/bin/extract.erofs"
-          extract.erofs
+          cp "$(pwd)/bin/erofs-utils/extract.erofs" "/usr/local/bin"
+          cp "$(pwd)/bin/erofs-utils/mkfs.erofs" "/usr/local/bin"
+          cp "$(pwd)/bin/ext4/make_ext4fs" "/usr/local/bin"
+          cp "$(pwd)/bin/lp/lpunpack" "/usr/local/bin"
+          cp "$(pwd)/bin/simg2img/simg2img" "/usr/local/bin"
+          chmod 755 "/usr/local/bin/*"
