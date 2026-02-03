@@ -15,7 +15,7 @@ jobs:
 
       - name: Free disk space
         run: |
-          blkid odm.img
+          blkid -o value -s TYPE odm.img
           ls
           pwd
           cp "$(pwd)/bin/erofs-utils/extract.erofs" "/usr/local/bin"
