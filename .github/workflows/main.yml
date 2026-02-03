@@ -18,3 +18,4 @@ jobs:
           blkid -o value -s TYPE odm.img
           file --version
           bash c.sh
+
