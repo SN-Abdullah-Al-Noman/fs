@@ -4,4 +4,4 @@ export MKFS_EROFS="$(pwd)/bin/erofs-utils/mkfs.erofs"
 
 chmod +x "$MKFS_EROFS"
 
-"$MKFS_EROFS"
+resize2fs
