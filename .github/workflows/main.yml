@@ -18,10 +18,4 @@ jobs:
           blkid -o value -s TYPE odm.img
           ls
           pwd
-          cp "$(pwd)/bin/erofs-utils/extract.erofs" "/usr/local/bin"
-          cp "$(pwd)/bin/erofs-utils/mkfs.erofs" "/usr/local/bin"
-          cp "$(pwd)/bin/ext4/make_ext4fs" "/usr/local/bin"
-          cp "$(pwd)/bin/lp/lpunpack" "/usr/local/bin"
-          cp "$(pwd)/bin/simg2img/simg2img" "/usr/local/bin"
-          sudo chmod 755 /usr/local/bin/*
-          lpunpack
+          sudo apt install -y p7zip-full lz4 simg2img
