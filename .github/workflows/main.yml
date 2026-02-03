@@ -18,4 +18,5 @@ jobs:
           blkid -o value -s TYPE odm.img
           ls
           pwd
-          sudo apt install -y p7zip-full lz4 simg2img
+          sudo apt install -y p7zip-full lz4 android-sdk-libsparse-utils
+          simg2img
