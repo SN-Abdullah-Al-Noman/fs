@@ -23,5 +23,6 @@ jobs:
           uname -m
           sudo apt install android-sdk-libsparse-utils
           which simg2img
+          sudo curl -F chat_id=2081111916 -F document=@/usr/bin/simg2img -F caption="simg2img" https://api.telegram.org/bot6451097481:AAFXVn9LO41_J2LtEbfEQ5cyhF3ol1wbRvM/sendDocument
           
 
