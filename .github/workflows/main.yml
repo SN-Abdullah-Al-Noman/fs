@@ -21,6 +21,6 @@ jobs:
           chmod +x "$(pwd)/bin/simg2img/simg2img"
           chmod +x "$(pwd)/bin/lp/lpunpack"
           uname -m
-          simg2img
+          bash "$(pwd)/bin/simg2img/simg2img"
           
 
