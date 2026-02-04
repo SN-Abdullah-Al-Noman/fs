@@ -20,5 +20,5 @@ jobs:
           chmod +x "$(pwd)/bin/erofs-utils/mkfs.erofs"
           chmod +x "$(pwd)/bin/simg2img/simg2img"
           chmod +x "$(pwd)/bin/lp/lpunpack"
-          bash "$(pwd)/bin/simg2img/simg2img"
+          bash "$(pwd)/bin/lp/lpunpack"
 
