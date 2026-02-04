@@ -21,7 +21,6 @@ jobs:
           chmod +x "$(pwd)/bin/simg2img/simg2img"
           chmod +x "$(pwd)/bin/lp/lpunpack"
           uname -m
-          sudo apt install android-tools
           simg2img"
           
 
