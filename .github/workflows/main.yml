@@ -19,43 +19,5 @@ jobs:
           echo "📦 Disk usage BEFORE cleanup"
           df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
 
-          sudo apt-get clean
-          sudo rm -rf /var/lib/apt/lists/*
-
-          echo "🗑 Removing unused packages"
-          sudo apt-get autoremove -y --purge
-
-          echo "🗑 Removing snap (safe on GitHub runner)"
-          sudo rm -rf /snap /var/snap /var/lib/snapd || true
-
-          echo "🗑 Removing Docker images"
-          docker system prune -af || true
-
-          echo "🗑 Removing Android SDK cache"
-          rm -rf ~/.android ~/.gradle || true
-
-          echo "🗑 Removing temporary files"
-          sudo rm -rf /tmp/* /var/tmp/* || true
-
-          echo "📦 Disk usage AFTER cleanup"
-          df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
-
-          # Extra heavy cleanup
-          sudo rm -rf /usr/share/dotnet || true
-          sudo rm -rf /opt/ghc || true
-          sudo rm -rf /usr/local/lib/android || true
-          sudo rm -rf /usr/lib/jvm || true
-          sudo rm -rf /usr/share/swift || true
-
-          # Remove unwanted packages
-          sudo apt-get remove -y \
-            azure-cli \
-            google-cloud-cli \
-            hhvm \
-            powershell \
-            mono-devel \
-            mysql-server \
-            postgresql* \
-            mongodb* || true
-
-          sudo apt-get autoremove -y --purge || true
+       - name: GitHub Workflow Cleaner Action
+        uses: rokibhasansagar/slimhub_actions@v25.42.5
