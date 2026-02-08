@@ -38,3 +38,21 @@ jobs:
          sudo rm -rf /tmp/* /var/tmp/*  true
 
          echo "📦 Disk usage AFTER cleanup"
+
+         sudo rm -rf /usr/share/dotnet  true
+    sudo rm -rf /opt/ghc  true
+    sudo rm -rf /usr/local/lib/android  true
+    sudo rm -rf /usr/lib/jvm  true
+    sudo rm -rf /usr/share/swift || true
+
+    sudo apt-get remove -y \
+      azure-cli \
+      google-cloud-cli \
+      hhvm \
+      powershell \
+      mono-devel \
+      mysql-server \
+      postgresql* \
+      mongodb* || true
+
+    sudo apt-get autoremove -y --purge
