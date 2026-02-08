@@ -19,5 +19,5 @@ jobs:
           echo "📦 Disk usage BEFORE cleanup"
           df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
 
-       - name: GitHub Workflow Cleaner Action
+      - name: GitHub Workflow Cleaner Action
         uses: rokibhasansagar/slimhub_actions@v25.42.5
