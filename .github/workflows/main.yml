@@ -14,45 +14,48 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 🧹 Free disk space (CI cleaner)
-       shell: bash
-       run: |
-         echo "📦 Disk usage BEFORE cleanup"
-         df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
-        
-         sudo apt-get clean
-         sudo rm -rf /var/lib/apt/lists/*
+        shell: bash
+        run: |
+          echo "📦 Disk usage BEFORE cleanup"
+          df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
 
-         echo "🗑 Removing unused packages"
-         sudo apt-get autoremove -y --purge
+          sudo apt-get clean
+          sudo rm -rf /var/lib/apt/lists/*
 
-         echo "🗑 Removing snap (safe on GitHub runner)"
-         sudo rm -rf /snap /var/snap /var/lib/snapd  true
+          echo "🗑 Removing unused packages"
+          sudo apt-get autoremove -y --purge
 
-         echo "🗑 Removing Docker images"
-         docker system prune -af  true
+          echo "🗑 Removing snap (safe on GitHub runner)"
+          sudo rm -rf /snap /var/snap /var/lib/snapd || true
 
-         echo "🗑 Removing Android SDK cache"
-         rm -rf ~/.android ~/.gradle  true
+          echo "🗑 Removing Docker images"
+          docker system prune -af || true
 
-         echo "🗑 Removing temporary files"
-         sudo rm -rf /tmp/* /var/tmp/*  true
+          echo "🗑 Removing Android SDK cache"
+          rm -rf ~/.android ~/.gradle || true
 
-         echo "📦 Disk usage AFTER cleanup"
+          echo "🗑 Removing temporary files"
+          sudo rm -rf /tmp/* /var/tmp/* || true
 
-         sudo rm -rf /usr/share/dotnet  true
-    sudo rm -rf /opt/ghc  true
-    sudo rm -rf /usr/local/lib/android  true
-    sudo rm -rf /usr/lib/jvm  true
-    sudo rm -rf /usr/share/swift || true
+          echo "📦 Disk usage AFTER cleanup"
+          df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
 
-    sudo apt-get remove -y \
-      azure-cli \
-      google-cloud-cli \
-      hhvm \
-      powershell \
-      mono-devel \
-      mysql-server \
-      postgresql* \
-      mongodb* || true
+          # Extra heavy cleanup
+          sudo rm -rf /usr/share/dotnet || true
+          sudo rm -rf /opt/ghc || true
+          sudo rm -rf /usr/local/lib/android || true
+          sudo rm -rf /usr/lib/jvm || true
+          sudo rm -rf /usr/share/swift || true
 
-    sudo apt-get autoremove -y --purge
+          # Remove unwanted packages
+          sudo apt-get remove -y \
+            azure-cli \
+            google-cloud-cli \
+            hhvm \
+            powershell \
+            mono-devel \
+            mysql-server \
+            postgresql* \
+            mongodb* || true
+
+          sudo apt-get autoremove -y --purge || true
