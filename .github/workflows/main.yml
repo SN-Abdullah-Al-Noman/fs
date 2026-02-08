@@ -13,8 +13,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Free disk space
-        run: |
+      - name: 🧹 Free disk space (CI cleaner)
+       shell: bash
+       run: |
+         echo "📦 Disk usage BEFORE cleanup"
          df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
-          
+        
+         sudo apt-get clean
+         sudo rm -rf /var/lib/apt/lists/*
 
+         echo "🗑 Removing unused packages"
+         sudo apt-get autoremove -y --purge
+
+         echo "🗑 Removing snap (safe on GitHub runner)"
+         sudo rm -rf /snap /var/snap /var/lib/snapd  true
+
+         echo "🗑 Removing Docker images"
+         docker system prune -af  true
+
+         echo "🗑 Removing Android SDK cache"
+         rm -rf ~/.android ~/.gradle  true
+
+         echo "🗑 Removing temporary files"
+         sudo rm -rf /tmp/* /var/tmp/*  true
+
+         echo "📦 Disk usage AFTER cleanup"
