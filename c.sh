@@ -32,7 +32,7 @@ cd "$AOSP_DIR"
 repo init -u https://android.googlesource.com/platform/manifest -b $AOSP_BRANCH
 
 # Shallow sync with new repo
-repo sync -c -j8 --no-tags --depth=1
+repo sync -c -j8 --no-tags
 
 
 # ----------------------------
