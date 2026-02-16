@@ -13,11 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🧹 Free disk space (CI cleaner)
+      - name: Run bash file
         shell: bash
         run: |
-          echo "📦 Disk usage BEFORE cleanup"
-          df . | awk 'NR==2 {printf "%.0f\n", $4/1024/1024}'
-
-      - name: GitHub Workflow Cleaner Action
-        uses: rokibhasansagar/slimhub_actions@v25.42.5
+          bash c.sh
