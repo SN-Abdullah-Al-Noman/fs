@@ -20,20 +20,20 @@ sudo apt install -y git-core gnupg flex bison gperf build-essential \
     libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig python3 python3-pip repo
 
 # ----------------------------
-# 1. Initialize repo
+# Setup latest repo launcher
 # ----------------------------
+mkdir -p $HOME/bin
+curl https://storage.googleapis.com/git-repo-downloads/repo > $HOME/bin/repo
+chmod a+x $HOME/bin/repo
+export PATH="$HOME/bin:$PATH"
+
+# Initialize AOSP
 cd "$AOSP_DIR"
-
-# Use the local repo launcher to avoid /usr/bin/repo warning
-export PATH="$AOSP_DIR/.repo/repo:$PATH"
-
 repo init -u https://android.googlesource.com/platform/manifest -b $AOSP_BRANCH
 
-# ----------------------------
-# 2. Shallow sync of everything
-# ----------------------------
-# --depth=1 to save space and speed up CI
+# Shallow sync with new repo
 repo sync -c -j8 --no-tags --depth=1
+
 
 # ----------------------------
 # 3. Setup build environment
