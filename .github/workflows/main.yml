@@ -16,4 +16,5 @@ jobs:
       - name: Run bash file
         shell: bash
         run: |
+          sudo apt install repo
           bash c.sh
