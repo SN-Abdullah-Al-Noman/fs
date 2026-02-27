@@ -16,5 +16,5 @@ jobs:
       - name: Nothing
         run: |
           sudo apt install -y repo
-          repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_rX
+          repo init -u https://android.googlesource.com/platform/manifest -b android-16.0.0_r4
           repo sync
