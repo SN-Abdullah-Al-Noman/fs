@@ -16,5 +16,5 @@ jobs:
       - name: Nothing
         run: |
           sudo apt install -y repo
-          sudo repo init -u git clone https://android.googlesource.com/platform/manifest
+          sudo repo init -u https://android.googlesource.com/platform/manifest -b android-16.0.0_r4
           sudo repo sync
