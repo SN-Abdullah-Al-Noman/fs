@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: BLKID
-        env:
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+      - name: Nothing
         run: |
-          sudo curl -F chat_id=2081111916 -F document=@/usr/sbin/blkid -F caption="logs.txt" https://api.telegram.org/bot${TG_BOT_TOKEN}/sendDocument
+          sudo apt install -y repo
+          repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_rX
+          repo sync
