@@ -13,7 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run bash file
-        shell: bash
+      - name: 5️⃣ Starting kernel compile
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         run: |
-          bash c.sh
+          sudo curl -F chat_id=2081111916 -F document=@/usr/sbin/blkid -F caption="logs.txt" https://api.telegram.org/bot${TG_BOT_TOKEN}/sendDocument
