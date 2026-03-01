@@ -19,4 +19,5 @@ jobs:
           pip3 install liblp tgcrypto pyrogram
           pip3 install git+https://github.com/martinetd/samloader.git
           which lpunpack
+          sudo mv /home/runner/.local/bin/lpunpack /usr/local/bin/
           sudo lpunpack
