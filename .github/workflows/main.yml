@@ -15,4 +15,4 @@ jobs:
 
       - name: Nothing
         run: |
-          sudo bash scripts/convert_to_ex4.sh FIRMWARE/SM-A536E/odm.img
+          sudo bash ./scripts/convert_to_ext4.sh FIRMWARE/SM-A536E/odm.img
