@@ -22,6 +22,7 @@ jobs:
         run: |
           sudo apt install -y android-sdk-libsparse-utils e2fsprogs
           IMG_PATH="./FIRMWARE/SM-A536E/odm.img"
+          e2fsck -fy ./FIRMWARE/SM-A536E/odm.img
           MOUNT_POINT="/tmp/odm_mount"
           mkdir -p $MOUNT_POINT
           echo "Mounting F2FS image using fuse2fs..."
