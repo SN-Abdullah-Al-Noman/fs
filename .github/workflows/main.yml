@@ -16,6 +16,12 @@ jobs:
       - name: Install dependencies.
         run: |
           sudo apt install -y android-sdk-libsparse-utils f2fs-tools fuse2fs fuse e2fsprogs
+          sudo apt update
+          DEBIAN_FRONTEND=noninteractive sudo apt install -yq \
+            7zip attr ccache clang ffmpeg \
+            libbrotli-dev libgtest-dev libprotobuf-dev libunwind-dev libpcre2-dev \
+            libzstd-dev linux-modules-extra-$(uname -r) lld protobuf-compiler webp
+          sudo modprobe erofs f2fs
  
       - name: Mount F2FS image using fuse2fs.
         run: |
