@@ -13,10 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install dependencies.
         run: |
           sudo apt install -y android-sdk-libsparse-utils f2fs-tools fuse2fs fuse e2fsprogs
  
-      - name: Mount F2FS image using fuse2fs
+      - name: Mount F2FS image using fuse2fs.
         run: |
           sudo bash ./scripts/convert_to_ext4.sh FIRMWARE/SM-A536E/odm.img
