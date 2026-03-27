@@ -17,4 +17,6 @@ jobs:
         run: |
           sudo apt update -y && sudo apt upgrade -y
           sudo apt install -y mount parted build-essential software-properties-common
+          sudo apt install f2fs-tools
+          sudo modprobe f2fs
           sudo bash ./scripts/convert_to_ext4.sh FIRMWARE/SM-A536E/odm.img
