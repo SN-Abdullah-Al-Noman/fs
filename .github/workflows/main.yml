@@ -18,6 +18,16 @@ jobs:
           sudo apt update -y && sudo apt upgrade -y
           sudo apt install -y mount parted build-essential software-properties-common f2fs-tools fuse2fs
 
+      - name: Convert sparse image to raw
+        run: |
+          sudo apt install -y android-tools-fsutils
+          simg2img ./FIRMWARE/SM-A536E/odm.img ./FIRMWARE/SM-A536E/odm_raw.img
+
+      - name: Mount raw F2FS image using fuse2fs
+        run: |
+          mkdir -p /tmp/odm_mount
+          fuse2fs ./FIRMWARE/SM-A536E/odm_raw.img /tmp/odm_mount
+  
       - name: Mount F2FS image using fuse2fs
         run: |
           IMG_PATH="./FIRMWARE/SM-A536E/odm.img"
