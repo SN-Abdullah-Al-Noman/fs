@@ -51,7 +51,7 @@ mkdir -p "$DEST_DIR/$IMG_NAME_BASE"
 mount -o loop "$NEW_IMG_NAME" "$DEST_DIR/$IMG_NAME_BASE"
 
 # Copy files
-cp -arv "$DEST_DIR/${IMG_NAME_BASE}_mount"/* "$DEST_DIR/$IMG_NAME_BASE"
+cp -a "$DEST_DIR/${IMG_NAME_BASE}_mount"/* "$DEST_DIR/$IMG_NAME_BASE"
 
 # Cleanup mounts
 umount "$DEST_DIR/$IMG_NAME_BASE"
