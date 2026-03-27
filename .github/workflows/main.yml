@@ -15,11 +15,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt install -y f2fs-tools fuse2fs fuse e2fsprogs
-          
+          sudo apt install -y android-sdk-libsparse-utils f2fs-tools fuse2fs fuse e2fsprogs
+ 
       - name: Mount F2FS image using fuse2fs
         run: |
-          sudo apt install -y android-sdk-libsparse-utils e2fsprogs
           IMG_PATH="./FIRMWARE/SM-A536E/odm.img"
           e2fsck -fy ./FIRMWARE/SM-A536E/odm.img
           MOUNT_POINT="/tmp/odm_mount"
