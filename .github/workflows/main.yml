@@ -20,7 +20,7 @@ jobs:
 
       - name: Convert sparse image to raw
         run: |
-          sudo apt install -y android-tools-fsutils
+          sudo apt install -y android-sdk-libsparse-utils e2fsprogs
           simg2img ./FIRMWARE/SM-A536E/odm.img ./FIRMWARE/SM-A536E/odm_raw.img
 
       - name: Mount raw F2FS image using fuse2fs
