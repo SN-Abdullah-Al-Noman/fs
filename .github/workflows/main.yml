@@ -13,10 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Nothing
+      - name: Install dependencies
         run: |
           sudo apt update -y && sudo apt upgrade -y
-          sudo apt install -y mount parted build-essential software-properties-common
-          sudo apt install f2fs-tools
-          sudo modprobe f2fs
-          sudo bash ./scripts/convert_to_ext4.sh FIRMWARE/SM-A536E/odm.img
+          sudo apt install -y mount parted build-essential software-properties-common f2fs-tools fuse2fs
+
+      - name: Mount F2FS image using fuse2fs
+        run: |
+          IMG_PATH="./FIRMWARE/SM-A536E/odm.img"
+          MOUNT_POINT="/tmp/odm_mount"
+          mkdir -p $MOUNT_POINT
+          echo "Mounting F2FS image using fuse2fs..."
+          fuse2fs $IMG_PATH $MOUNT_POINT
+          ls -l $MOUNT_POINT
