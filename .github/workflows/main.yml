@@ -15,8 +15,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt update -y && sudo apt upgrade -y
-          sudo apt install -y mount parted build-essential software-properties-common f2fs-tools fuse2fs
+          sudo apt install -y f2fs-tools fuse2fs fuse e2fsprogs
           
       - name: Mount F2FS image using fuse2fs
         run: |
