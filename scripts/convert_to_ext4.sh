@@ -39,7 +39,7 @@ else
 fi
 
 # Calculate size
-MOUNT_SIZE=$(du -sb "$DEST_DIR/${IMG_NAME_BASE}_mount" | awk '{print int($1 * 1.1)}')
+MOUNT_SIZE=$(du -sb "$DEST_DIR/${IMG_NAME_BASE}_mount" | awk '{print int($1 * 1.3)}')
 echo "Mounted image size: ${MOUNT_SIZE} bytes"
 
 # Create ext4 image
