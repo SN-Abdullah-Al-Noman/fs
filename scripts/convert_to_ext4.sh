@@ -53,13 +53,19 @@ mount -o loop "$NEW_IMG_NAME" "$DEST_DIR/$IMG_NAME_BASE"
 # Copy files
 cp -arv "$DEST_DIR/${IMG_NAME_BASE}_mount"/* "$DEST_DIR/$IMG_NAME_BASE"
 
-# Cleanup
+# Cleanup mounts
 umount "$DEST_DIR/$IMG_NAME_BASE"
 rm -rf "$DEST_DIR/$IMG_NAME_BASE"
 
 umount "$DEST_DIR/${IMG_NAME_BASE}_mount" 2>/dev/null
 rm -rf "$DEST_DIR/${IMG_NAME_BASE}_mount"
 
+# 🔥 Rename back to original name
+FINAL_IMG="$DEST_DIR/${IMG_NAME_BASE}.img"
+
+echo "[*] Replacing original image..."
+rm -f "$FINAL_IMG"
+mv "$NEW_IMG_NAME" "$FINAL_IMG"
+
 echo ""
-echo "Conversion completed."
-echo "New image created: $NEW_IMG_NAME"
+echo "Final image: $FINAL_IMG"
