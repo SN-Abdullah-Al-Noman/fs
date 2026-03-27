@@ -19,10 +19,4 @@ jobs:
  
       - name: Mount F2FS image using fuse2fs
         run: |
-          IMG_PATH="./FIRMWARE/SM-A536E/odm.img"
-          e2fsck -fy ./FIRMWARE/SM-A536E/odm.img
-          MOUNT_POINT="/tmp/odm_mount"
-          mkdir -p $MOUNT_POINT
-          echo "Mounting F2FS image using fuse2fs..."
-          fuse2fs $IMG_PATH $MOUNT_POINT
-          ls -l $MOUNT_POINT
+          sudo bash ./scripts/convert_to_ext4.sh FIRMWARE/SM-A536E/odm.img
