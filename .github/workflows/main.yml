@@ -19,4 +19,6 @@ jobs:
  
       - name: Mount F2FS image using fuse2fs.
         run: |
-          sudo bash ./scripts/convert_to_ext4.sh FIRMWARE/SM-A536E/odm.img
+          simg2img ./FIRMWARE/SM-A536E/odm.img ./FIRMWARE/SM-A536E/odm_raw.img
+          mkdir -p ./odm_mount
+          fuse2fs ./FIRMWARE/SM-A536E/odm_raw.img ./odm_mount
