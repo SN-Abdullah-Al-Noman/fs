@@ -1,32 +1,46 @@
-name: QuantumROM Tools
+name: QuantumROM Tools Sixteen
 
 on:
-  push:
-    branches:
-      - heroku
+  workflow_dispatch:
+    inputs:
+      TARGET_DEVICE:
+        description: "TARGET_DEVICE_MODEL."
+        required: true
+        default: "SM-A346E"
+      TARGET_DEVICE_CSC:
+        description: "TARGET_DEVICE_CSC."
+        required: true
+        default: "BKD"
+      TARGET_DEVICE_IMEI:
+        description: "TARGET_DEVICE_IMEI."
+        required: false
+        default: ""   # optional now
+      # ... other inputs
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Set IMEI based on device
+        id: set_imei
+        run: |
+          declare -A device_imei_map
+          device_imei_map=(
+            ["SM-A225F"]="123456789012345"
+            ["SM-A245F"]="353435774197736"
+            ["SM-A346E"]="987654321098765"
+          )
 
-      - name: Install dependencies.
+          # If TARGET_DEVICE_IMEI is empty, set it automatically
+          if [ -z "${{ github.event.inputs.TARGET_DEVICE_IMEI }}" ]; then
+            IMEI=${device_imei_map[${{ github.event.inputs.TARGET_DEVICE }}]}
+          else
+            IMEI=${{ github.event.inputs.TARGET_DEVICE_IMEI }}
+          fi
+
+          echo "TARGET_DEVICE_IMEI=$IMEI" >> $GITHUB_ENV
+
+      - name: Show values
         run: |
-          sudo apt install -y android-sdk-libsparse-utils f2fs-tools fuse2fs fuse e2fsprogs
-          sudo apt update
-          DEBIAN_FRONTEND=noninteractive sudo apt install -yq \
-            7zip attr ccache clang ffmpeg \
-            libbrotli-dev libgtest-dev libprotobuf-dev libunwind-dev libpcre2-dev \
-            libzstd-dev linux-modules-extra-$(uname -r) lld protobuf-compiler webp
-          sudo modprobe erofs f2fs
- 
-      - name: Mount F2FS image using fuse2fs.
-        run: |
-          mkdir -p ./odm_mount
-          fuse2fs ./FIRMWARE/SM-A536E/odm.img ./odm_mount
-          simg2img ./FIRMWARE/SM-A536E/odm.img ./FIRMWARE/SM-A536E/odm_raw.img
-          mkdir -p ./odm_mount
-          fuse2fs ./FIRMWARE/SM-A536E/odm_raw.img ./odm_mount
+          echo "Target device: ${{ github.event.inputs.TARGET_DEVICE }}"
+          echo "Target IMEI: $TARGET_DEVICE_IMEI"
