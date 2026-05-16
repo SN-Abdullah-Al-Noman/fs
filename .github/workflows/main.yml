@@ -23,6 +23,5 @@ jobs:
 
       - name: Verify F2FS support
         run: |
-          which make.f2fs
-          which make_f2fs
+          sudo find / -name "*f2fs*"
           
