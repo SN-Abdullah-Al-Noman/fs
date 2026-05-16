@@ -23,4 +23,5 @@ jobs:
 
       - name: Verify F2FS support
         run: |
-          sload_f2fs
+          which sload.f2fs
+          sload.f2fs -h
