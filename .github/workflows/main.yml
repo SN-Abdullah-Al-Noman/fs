@@ -1,46 +1,32 @@
-name: QuantumROM Tools Sixteen
+name: Build ROM
 
 on:
   workflow_dispatch:
-    inputs:
-      TARGET_DEVICE:
-        description: "TARGET_DEVICE_MODEL."
-        required: true
-        default: "SM-A346E"
-      TARGET_DEVICE_CSC:
-        description: "TARGET_DEVICE_CSC."
-        required: true
-        default: "BKD"
-      TARGET_DEVICE_IMEI:
-        description: "TARGET_DEVICE_IMEI."
-        required: false
-        default: ""   # optional now
-      # ... other inputs
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '*.md'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+
     steps:
-      - name: Set IMEI based on device
-        id: set_imei
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Update packages and install dependencies
         run: |
-          declare -A device_imei_map
-          device_imei_map=(
-            ["SM-A225F"]="123456789012345"
-            ["SM-A245F"]="353435774197736"
-            ["SM-A346E"]="987654321098765"
-          )
+          sudo apt update
+          sudo apt upgrade -y
 
-          # If TARGET_DEVICE_IMEI is empty, set it automatically
-          if [ -z "${{ github.event.inputs.TARGET_DEVICE_IMEI }}" ]; then
-            IMEI=${device_imei_map[${{ github.event.inputs.TARGET_DEVICE }}]}
-          else
-            IMEI=${{ github.event.inputs.TARGET_DEVICE_IMEI }}
-          fi
+          sudo apt install -y f2fs-tools
 
-          echo "TARGET_DEVICE_IMEI=$IMEI" >> $GITHUB_ENV
-
-      - name: Show values
+      - name: Load F2FS kernel module
         run: |
-          echo "Target device: ${{ github.event.inputs.TARGET_DEVICE }}"
-          echo "Target IMEI: $TARGET_DEVICE_IMEI"
+          sudo modprobe f2fs
+
+      - name: Verify F2FS support
+        run: |
+          sload_f2fs
