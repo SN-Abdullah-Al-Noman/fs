@@ -26,5 +26,5 @@ jobs:
           ls
           pwd
           dd if=/dev/zero of=system.img bs=512 count=5555556
-          sudo ./bin/f2fs-tools/mkfs.f2fs -f -q -g android -O extra_attr,inode_checksum,sb_checksum,compression system.img
-          sudo ./bin/f2fs-tools/sload.f2fs -t /system -P -c -L 2 -a lz4 system.img
+          sudo "$(pwd)"/bin/f2fs-tools/mkfs.f2fs -f -q -g android -O extra_attr,inode_checksum,sb_checksum,compression system.img
+          sudo "$(pwd)"/bin/f2fs-tools/sload.f2fs -t /system -P -c -L 2 -a lz4 system.img
