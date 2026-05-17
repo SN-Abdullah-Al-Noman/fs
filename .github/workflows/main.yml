@@ -41,4 +41,4 @@ jobs:
               -c \
               -L 2 \
               -a lz4 \
-              system.img
+              -p system.img
