@@ -35,10 +35,9 @@ jobs:
               -l /system \
               system.img
 
-          sudo "$(pwd)"/bin/f2fs-tools/sload.f2fs
+          sudo "$(pwd)/bin/f2fs-tools/sload.f2fs" \
               -t /system \
               -P \
               -c \
-              -L 2 \
-              -a lz4 \
-              -p system.img
+             -L 2 \
+             system.img
