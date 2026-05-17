@@ -39,5 +39,6 @@ jobs:
               -t /system \
               -P \
               -c \
-             -L 2 \
-             system.img
+              -L 2 \
+              -a lz4 \
+              system.img
