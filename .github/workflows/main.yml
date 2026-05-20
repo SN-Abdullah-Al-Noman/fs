@@ -23,9 +23,9 @@ jobs:
 
       - name: Verify F2FS support
         run: |
-          ls -l "$(pwd)"/bin/f2fs-tools
-          chmod +x "$(pwd)"/bin/f2fs-tools/mkfs.f2fs
-          chmod +x "$(pwd)"/bin/f2fs-tools/sload.f2fs
+          # ls -l "$(pwd)"/bin/f2fs-tools
+          # chmod +x "$(pwd)"/bin/f2fs-tools/mkfs.f2fs
+          # chmod +x "$(pwd)"/bin/f2fs-tools/sload.f2fs
           chmod +x "$(pwd)"/bin/samloader/samloader
-          bash 
+          bash "$(pwd)"/bin/samloader/samloader
         
