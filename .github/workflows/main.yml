@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout source
@@ -21,4 +21,4 @@ jobs:
           sudo apt update
           sudo apt install -y git python3 python3-pip 
           sudo pip3 install git+https://github.com/SN-Abdullah-Al-Noman/samloader.git
-          sudo samloader -m SM-A366B -r AFG -i 351557835485792 download -v A366BXXU4BYI7/A366BOJM4BYI7/A366BXXU4BYI7/A366BXXU4BYI7 -O ./FW
+          sudo samloader -m SM-A366B -r AFG -i 351557835485792 -v A366BXXU4BYI7/A366BOJM4BYI7/A366BXXU4BYI7/A366BXXU4BYI7 download ./FW
