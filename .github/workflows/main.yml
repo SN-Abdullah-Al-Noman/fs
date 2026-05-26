@@ -18,7 +18,7 @@ jobs:
 
       - name: Update packages and install dependencies
         run: |
-          sudo apt update
+          sudo apt update 
           sudo apt install -y git python3 python3-pip unzip
           sudo pip3 install git+https://github.com/SN-Abdullah-Al-Noman/samloader2.git
           mkdir -p FW
