@@ -18,7 +18,8 @@ jobs:
 
       - name: Update packages and install dependencies
         run: |
-          sudo apt update 
-          sudo apt-get install libncursesw5-dev
-          which libtinfo.so.5
-          
+          if curl -fsSL --connect-timeout 5 https://www.google.com >/dev/null; then
+              echo "Internet available"
+          else
+              echo "No internet"
+          fi
